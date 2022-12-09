@@ -27,7 +27,7 @@
                         <a href="{{ route('categorie.edit', $categorie->id) }}">Editer</a>
                     </td>
                     <td>
-                        <form action="{{ route('categorie.delete', $marque->id) }}" method="POST">
+                        <form action="{{ route('categorie.delete', $categorie->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             @if ($errors->any())

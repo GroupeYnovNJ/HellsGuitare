@@ -5,7 +5,7 @@
 @section('content')
     <table class='table'>
 
-        <form action="{{ route('instrument.update', $instrument->id) }}" method="POST">
+        <form action="{{ route('instrument.update', $instrument->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             @if ($errors->any())

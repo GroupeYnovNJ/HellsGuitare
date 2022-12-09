@@ -95,7 +95,11 @@ class InstrumentController extends Controller
      */
     public function edit(Instrument $instrument)
     {
-        return view('instruments.edit', compact('instrument'));
+        $categories = Categorie::all();
+        $marques = Marque::all();
+        $rayons = Rayon::all();
+        $promotions = Promotion::all();
+        return view('instruments.edit', compact('instrument', 'categories', 'marques', 'rayons', 'promotions'));
     }
 
     /**

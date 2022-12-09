@@ -32,7 +32,7 @@
                         <a href="{{ route('promotion.edit', $promotion->id) }}">Editer</a>
                     </td>
                     <td>
-                        <form action="{{ route('promotion.delete', $marque->id) }}" method="POST">
+                        <form action="{{ route('promotion.delete', $promotion->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             @if ($errors->any())

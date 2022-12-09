@@ -29,7 +29,7 @@ class UpdateInstrumentRequest extends FormRequest
             'description' => 'required|string',
             'prix' => 'required|numeric|between:0,299.99',
             'stock'=> 'required|between:0,50|integer',
-            'image' => 'required|file|image|mimes:jpeg,jpg,png',
+            'image' => 'required|file|mimes:jpeg,jpg,png',
             'categorie_id' => 'required|exists:categories,id|integer',
             'rayon_id' => 'required|exists:rayons,id|integer',
             'marque_id' => 'required|exists:marques,id|integer',

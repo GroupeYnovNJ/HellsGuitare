@@ -28,7 +28,7 @@
                         <a href="{{ route('rayon.edit', $rayon->id) }}">Editer</a>
                     </td>
                     <td>
-                        <form action="{{ route('rayon.delete', $marque->id) }}" method="POST">
+                        <form action="{{ route('rayon.delete', $rayon->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             @if ($errors->any())
