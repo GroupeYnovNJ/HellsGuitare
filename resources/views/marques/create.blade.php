@@ -1,0 +1,23 @@
+@extends('layouts.backend')
+
+@section('page_title', "Création d'une marque")
+@section('content')
+    <form action="{{ route('marque.store') }}" method="POST">
+        @csrf
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom"><br>
+        <label>Créer</label>
+        <input type="submit">
+
+    </form>
+@endsection

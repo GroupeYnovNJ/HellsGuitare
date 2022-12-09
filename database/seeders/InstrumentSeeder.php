@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Instrument;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class InstrumentSeeder extends Seeder
 {
@@ -14,6 +15,6 @@ class InstrumentSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Instrument::factory(11)->create();
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Categorie;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CategorieSeeder extends Seeder
 {
@@ -14,6 +15,18 @@ class CategorieSeeder extends Seeder
      */
     public function run()
     {
-        //
-    }
+  /*  $noms = [
+        ['nom'=>'folk'],['nom'=>'acoustique']
+    , ['nom'=>'classique'], 
+    ['nom'=>'violoncelle']
+    , ['nom'=>'diatonique']
+    , ['nom'=>'celtique']
+    , ['nom'=>'mexicaine'], 
+    ['nom'=>'à queue']
+    , ['nom'=>'droit']
+    , ['nom'=>'numérique']
+    , ['nom'=>'crapaud'],
+    ];*/
+    Categorie::factory(10)->create();
+}
 }

@@ -13,7 +13,7 @@ class UpdatePromotionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdatePromotionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id',
+            'coupon' => 'required|string',
+            'reduction' => 'required|between:10,80|integer',
+            'date_debut' => 'required|date|after_or_equal:now',
+            'date_fin'=> 'required|date|after:date_debut',
         ];
     }
 }

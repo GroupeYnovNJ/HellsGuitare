@@ -13,7 +13,7 @@ class UpdateInstrumentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UpdateInstrumentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id',
+            'nom' => 'required|min:2|max:55|string',
+            'description' => 'required|string',
+            'prix' => 'required|numeric|between:0,299.99',
+            'stock'=> 'required|between:0,50|integer',
+            'image' => 'required|file|image|mimes:jpeg,jpg,png',
+            'categorie_id' => 'required|exists:categories,id|integer',
+            'rayon_id' => 'required|exists:rayons,id|integer',
+            'marque_id' => 'required|exists:marques,id|integer',
+            'promotion_id' => 'required|exists:promotions,id|integer'
         ];
     }
 }

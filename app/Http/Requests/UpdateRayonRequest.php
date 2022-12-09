@@ -13,7 +13,7 @@ class UpdateRayonRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateRayonRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id',
+            'nom' => 'required|min:2|max:55|string',
+            'nb_produits' => 'required|between:0,70|integer',
+            'employe_id' => 'required|exists:employes,id|integer'
         ];
     }
 }

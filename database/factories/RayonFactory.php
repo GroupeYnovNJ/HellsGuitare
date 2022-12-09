@@ -16,8 +16,11 @@ class RayonFactory extends Factory
      */
     public function definition()
     {
+        static $counter = 0;
+        $noms = ['Guitare', 'Violon', 'Harpe', 'Piano'];
         return [
-            //
+            'nom' => $noms[$counter++],
+            'nb_produits' => fake()->numberBetween(1,50),
         ];
     }
 }

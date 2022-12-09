@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::paginate(2);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -36,7 +37,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -47,7 +48,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+
     }
 
     /**
@@ -58,7 +59,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -70,7 +71,17 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->except([
+            '_token',
+            '_method',
+            'role'
+        ]));
+        $user->role = $request->has('role');
+        $user->save();
+        return redirect()->route('users.index')->with([
+            'status' => 'success',
+            'msg' => __('Utilisateur mis à jour avec succès')
+        ]);
     }
 
     /**

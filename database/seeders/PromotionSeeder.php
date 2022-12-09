@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Promotion;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PromotionSeeder extends Seeder
 {
@@ -14,6 +15,6 @@ class PromotionSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Promotion::factory(4)->create();
     }
 }

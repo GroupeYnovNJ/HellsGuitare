@@ -15,8 +15,8 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $categories = categorie::all();
-        return view('categorie.index', compact('categories'));
+        $categories = Categorie::paginate(2);
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        return view('categorie.create');
+        return view('categories.create');
     }
 
     /**
@@ -37,8 +37,11 @@ class CategorieController extends Controller
      */
     public function store(StoreCategorieRequest $request)
     {
-        categorie::create($request->all());
-        return redirect()->route('home');
+        Categorie::create($request->all());
+        return redirect()->route('categories.index')->with([
+            'status' => 'success',
+            'msg' => __('Catégorie créée avec succès')
+        ]);
     }
 
     /**
@@ -49,7 +52,7 @@ class CategorieController extends Controller
      */
     public function show(Categorie $categorie)
     {
-        return view('categorie.index', compact('categorie'));
+        return view('categories.show', compact('categorie'));
     }
 
     /**
@@ -60,7 +63,7 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie)
     {
-        return view('Categorie.edit', compact('categorie'));
+        return view('categories.edit', compact('categorie'));
     }
 
     /**
@@ -72,10 +75,15 @@ class CategorieController extends Controller
      */
     public function update(UpdateCategorieRequest $request, Categorie $categorie)
     {
-        $categorie = categorie::find($request->id);
-        $categorie->fill($request->input());
+        $categorie->update($request->except([
+            '_token',
+            '_method'
+        ]));
         $categorie->save();
-        return redirect()->route('home');
+        return redirect()->route('categories.index')->with([
+            'status' => 'success',
+            'msg' => __('Catégorie mise à jour avec succès')
+        ]);
     }
 
     /**
@@ -86,6 +94,10 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        $categorie->delete();
+        return redirect()->route('categories.index')->with([
+            'status' => 'success',
+            'msg' => __('Catégorie supprimée avec succès')
+        ]);
     }
 }

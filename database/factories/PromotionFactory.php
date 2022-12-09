@@ -16,8 +16,15 @@ class PromotionFactory extends Factory
      */
     public function definition()
     {
+        static $counter = 0;
+        $date_debut = fake()->dateTime;
+        $date_fin = fake()->dateTimeInInterval($date_debut,'7 days');
+        //$reductions = [5, 15, 0, 10];
         return [
-            //
+            'coupon' => fake()->text(),
+            'reduction' => fake()->numberBetween(5,80),
+            'date_debut' =>  $date_debut,
+            'date_fin' =>  $date_fin,
         ];
     }
 }

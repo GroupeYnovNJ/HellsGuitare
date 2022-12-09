@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nom', 55);
             $table->string('prenom', 55);
-            $table->string('mdp');
-            $table->string('mail', 55);
+            $table->string('telephone', 20);
+            $table->string('email')->unique()->safeEmail();
             $table->timestamps();
         });
     }

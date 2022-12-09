@@ -13,7 +13,7 @@ class StoreCategorieRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreCategorieRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nom' => 'required|min:2|max:55|string'
         ];
     }
 }

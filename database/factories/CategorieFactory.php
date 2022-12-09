@@ -16,8 +16,16 @@ class CategorieFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
-        ];
+        // guitares : 'folk', 'acoustique', 'classique'
+        // violon : 'classique', 'violoncelle'
+        // harpe : 'diatonique', 'celtique', 'mexicaine'
+        // piano : 'à queue', 'droit', 'numérique', 'crapaud'
+        static $counter = 0;
+        $noms = ['folk', 'acoustique', 'classique', 'violoncelle', 'diatonique', 'celtique', 'à queue', 'droit', 'numérique', 'crapaud'];
+        
+            return [
+                'nom' => $noms[$counter++],
+            ];
+    
     }
 }

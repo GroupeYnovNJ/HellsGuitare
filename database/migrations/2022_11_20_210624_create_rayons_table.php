@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rayons', function (Blueprint $table) {
             $table->id();
-            $table->string('nom', 50);
+            $table->string('nom', 55);
             $table->integer('nb_produits');
             $table->timestamps();
         });

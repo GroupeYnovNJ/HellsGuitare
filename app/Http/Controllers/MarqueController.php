@@ -15,7 +15,8 @@ class MarqueController extends Controller
      */
     public function index()
     {
-        //
+        $marques = Marque::paginate(2);
+        return view('marques.index', compact('marques'));
     }
 
     /**
@@ -25,7 +26,7 @@ class MarqueController extends Controller
      */
     public function create()
     {
-        //
+        return view('marques.create');
     }
 
     /**
@@ -36,7 +37,11 @@ class MarqueController extends Controller
      */
     public function store(StoreMarqueRequest $request)
     {
-        //
+        Marque::create($request->all());
+        return redirect()->route('marques.index')->with([
+            'status' => 'success',
+            'msg' => __('Marque créée avec succès')
+        ]);
     }
 
     /**
@@ -47,7 +52,7 @@ class MarqueController extends Controller
      */
     public function show(Marque $marque)
     {
-        //
+        return view('marques.show', compact('marque'));
     }
 
     /**
@@ -58,7 +63,7 @@ class MarqueController extends Controller
      */
     public function edit(Marque $marque)
     {
-        //
+        return view('marques.edit', compact('marque'));
     }
 
     /**
@@ -70,7 +75,15 @@ class MarqueController extends Controller
      */
     public function update(UpdateMarqueRequest $request, Marque $marque)
     {
-        //
+        $marque->update($request->except([
+            '_token',
+            '_method'
+        ]));
+        $marque->save();
+        return redirect()->route('marques.index')->with([
+            'status' => 'success',
+            'msg' => __('Marque mise à jour avec succès')
+        ]);
     }
 
     /**
@@ -81,6 +94,10 @@ class MarqueController extends Controller
      */
     public function destroy(Marque $marque)
     {
-        //
+        $marque->delete();
+        return redirect()->route('marques.index')->with([
+            'status' => 'success',
+            'msg' => __('Marque supprimée avec succès')
+        ]);
     }
 }

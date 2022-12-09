@@ -15,7 +15,8 @@ class RayonController extends Controller
      */
     public function index()
     {
-        //
+        $rayons = Rayon::paginate(2);
+        return view('rayons.index', compact('rayons'));
     }
 
     /**
@@ -25,7 +26,11 @@ class RayonController extends Controller
      */
     public function create()
     {
-        //
+        $rayons = rayon::all();
+        return redirect()->route('rayons.index')->with([
+            'status' => 'success',
+            'msg' => __('Rayon créé avec succès')
+        ]);
     }
 
     /**
@@ -36,7 +41,8 @@ class RayonController extends Controller
      */
     public function store(StoreRayonRequest $request)
     {
-        //
+        Rayon::create($request->all());
+        return redirect()->route('home');
     }
 
     /**
@@ -47,7 +53,7 @@ class RayonController extends Controller
      */
     public function show(Rayon $rayon)
     {
-        //
+        return view('rayons.show', compact('rayon'));
     }
 
     /**
@@ -58,7 +64,7 @@ class RayonController extends Controller
      */
     public function edit(Rayon $rayon)
     {
-        //
+        return view('rayons.edit', compact('rayon'));
     }
 
     /**
@@ -70,7 +76,15 @@ class RayonController extends Controller
      */
     public function update(UpdateRayonRequest $request, Rayon $rayon)
     {
-        //
+        $rayon->update($request->except([
+            '_token',
+            '_method'
+        ]));
+        $rayon->save();
+        return redirect()->route('rayons.index')->with([
+            'status' => 'success',
+            'msg' => __('Rayon mis à jour avec succès')
+        ]);
     }
 
     /**
@@ -81,6 +95,10 @@ class RayonController extends Controller
      */
     public function destroy(Rayon $rayon)
     {
-        //
+        $rayon->delete();
+        return redirect()->route('rayons.index')->with([
+            'status' => 'success',
+            'msg' => __('Rayon supprimé avec succès')
+        ]);
     }
 }

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Marque extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nom'
+    ];
+
+    public function instruments(){
+        return $this->hasMany(Instrument::class);
+    }
 }

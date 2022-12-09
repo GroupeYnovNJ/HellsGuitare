@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Rayon;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RayonSeeder extends Seeder
 {
@@ -14,6 +15,6 @@ class RayonSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Rayon::factory(4)->create();
     }
 }

@@ -16,8 +16,14 @@ class MarqueFactory extends Factory
      */
     public function definition()
     {
+        // guitares : 'Fender', 'Gretsch', 'Hartwood'
+        // violon : 'Yamaha', 'Stentor'
+        // harpe : 'Tomann'
+        // piano : 'Sauter', 'Steingraeber', 'Fazioli', 'Yamaha'
+        static $counter = 0;
+        $noms = ['Fender', 'Gretsch', 'Hartwood', 'Yamaha', 'Stentor', 'Thomann', 'Sauter', 'Steingraeber', 'Fazioli'];
         return [
-            //
+            'nom' => $noms[$counter++],
         ];
     }
 }

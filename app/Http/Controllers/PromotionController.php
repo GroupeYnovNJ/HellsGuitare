@@ -15,7 +15,8 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        //
+        $promotions = Promotion::paginate(2);
+        return view('promotions.index', compact('promotions'));
     }
 
     /**
@@ -25,7 +26,7 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        //
+        return view('promotions.create');
     }
 
     /**
@@ -36,7 +37,11 @@ class PromotionController extends Controller
      */
     public function store(StorePromotionRequest $request)
     {
-        //
+        Promotion::create($request->all());
+        return redirect()->route('promotions.index')->with([
+            'status' => 'success',
+            'msg' => __('Promotion créée avec succès')
+        ]);
     }
 
     /**
@@ -47,7 +52,7 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        //
+        return view('promotions.show', compact('promotion'));
     }
 
     /**
@@ -58,7 +63,7 @@ class PromotionController extends Controller
      */
     public function edit(Promotion $promotion)
     {
-        //
+        return view('promotions.edit', compact('promotion'));
     }
 
     /**
@@ -70,7 +75,15 @@ class PromotionController extends Controller
      */
     public function update(UpdatePromotionRequest $request, Promotion $promotion)
     {
-        //
+        $promotion->update($request->except([
+            '_token',
+            '_method'
+        ]));
+        $promotion->save();
+        return redirect()->route('promotions.index')->with([
+            'status' => 'success',
+            'msg' => __('Promotion mise à jour avec succès')
+        ]);
     }
 
     /**
@@ -81,6 +94,10 @@ class PromotionController extends Controller
      */
     public function destroy(Promotion $promotion)
     {
-        //
+        $promotion->delete();
+        return redirect()->route('promotions.index')->with([
+            'status' => 'success',
+            'msg' => __('Promotion supprimée avec succès')
+        ]);
     }
 }

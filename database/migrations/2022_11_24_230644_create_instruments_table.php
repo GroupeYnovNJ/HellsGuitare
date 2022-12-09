@@ -16,17 +16,19 @@ return new class extends Migration
         Schema::create('instruments', function (Blueprint $table) {
             $table->id();
             $table->string('nom', 55);
-            $table->text('description')->nullable();
-            $table->float('prix');
-            $table->integer('stock');
+            $table->text('description');
+            $table->unsignedDecimal('prix', $precision = 4, $scale=2);
+            $table->unsignedInteger('stock');
             $table->string('image', 250);
-            $table->unsignedBigInteger('categories_id');
-            $table->unsignedBigInteger('rayons_id');
-            $table->unsignedBigInteger('marques_id');
+            $table->unsignedBigInteger('categorie_id');
+            $table->unsignedBigInteger('rayon_id');
+            $table->unsignedBigInteger('marque_id');
+            $table->unsignedBigInteger('promotion_id');
             $table->timestamps();
-            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('rayons_id')->references('id')->on('rayons')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('marques_id')->references('id')->on('marques')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('rayon_id')->references('id')->on('rayons')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('marque_id')->references('id')->on('marques')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('promotion_id')->references('id')->on('promotions')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 

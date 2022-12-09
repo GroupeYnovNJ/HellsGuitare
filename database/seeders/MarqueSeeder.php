@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Marque;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class MarqueSeeder extends Seeder
 {
@@ -14,6 +15,6 @@ class MarqueSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Marque::factory(9)->create();
     }
 }

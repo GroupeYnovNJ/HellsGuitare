@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->string('coupon', 55);
-            $table->integer('reduction');
+            $table->text('coupon');
+            $table->unsignedInteger('reduction')->nullable();
             $table->date('date_debut');
             $table->date('date_fin');
-            
             $table->timestamps();
             
         });

@@ -13,7 +13,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id',
+            'name' => 'required',
+            'email'=> 'required|email:rfc',
+            'password' => 'nullable',
+            'role' => 'boolean'
+            
         ];
     }
 }

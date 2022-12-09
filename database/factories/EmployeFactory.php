@@ -16,8 +16,13 @@ class EmployeFactory extends Factory
      */
     public function definition()
     {
+       // static $counter = 0;
+       // $noms = ['Hoel Frantz', 'Agustine Adenté', 'Joel Feliciti', 'Fleure Deschamp'];
         return [
-            //
+                'nom' => fake()->lastName(),
+                'prenom' => fake()->firstName(),
+                'telephone' => fake()->e164PhoneNumber(),
+                'email' => fake()->unique()->safeEmail(),
         ];
     }
 }

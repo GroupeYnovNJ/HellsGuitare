@@ -11,29 +11,57 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">{{ __('Nom') }}</th>
-                <th scope="col">{{ __('Statut') }}</th>
                 <th scope="col">{{ __('Description') }}</th>
-                <th scope="col">{{ __('Page Web') }}</th>
-                <th scope="col">{{ __('J\'aime') }}</th>
+                <th scope="col">{{ __('Prix') }}</th>
+                <th scope="col">{{ __('Stock') }}</th>
+                <th scope="col">{{ __('Image') }}</th>
+
             </tr>
         </thead>
         <tbody>
-            @foreach ($entreprises as $entreprise)
+            @foreach ($instruments as $instrument)
                 <tr>
-                    <th scope="row">{{ $entreprise->id }}</th>
-                    <td>{{ $entreprise->nom }}</td>
-                    <td>{{ $entreprise->statut }}</td>
-                    <td>{{ $entreprise->description }}</td>
-                    <td>{{ $entreprise->web }}</td>
-                    <td>{{ $entreprise->likes }}</td>
+                    <th scope="row">{{ $instrument->id }}</th>
                     <td>
-                        <a href="{{ route('entreprise.edit', $entreprise->id) }}">Editer</a>
+                        <a href="{{ route('instrument.show', $instrument->id) }}">
+                            {{ $instrument->nom }}
+                        </a>
+                    </td>
+                    <td>{{ $instrument->description }}</td>
+                    <td>{{ $instrument->prix }}</td>
+                    <td>{{ $instrument->stock }}</td>
+                    <td><img src="{{ $instrument->image }}" width="70px"height="70px"alt="Un instrument de musique">
+                    </td>
+                    <td>
+                        <a href="{{ route('instrument.edit', $instrument->id) }}">Editer</a>
+                    </td>
+                    <td>
+                        <form action="{{ route('instrument.delete', $instrument->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <!--checke les erreurs en fonction des paramètres dans UpdateInstrumentRequest.php -->
+
+                            <input type="hidden" id="id" name="id" value="{{ $instrument->id }}"><br>
+                            <input id="sub" type="submit" value="Supprimer"
+                                onclick="return confirm('Êtes-vous certain de vouloir supprimer cet instrument');">
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
+    <div>
+        {{ $instruments->links() }}
+    </div>
     <div>
         <title>Geographic Coordinates</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">

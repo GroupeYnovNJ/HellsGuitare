@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +26,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //Rend les tokens perrissables au bout de 30 jours
+        //Passport::tokensExpireIn(now()->addDays(30));
+        //Passport::refreshTokenExpireIn(now()->addDays(30));
+        //Passport::personalAccessTokenExpireIn(now()->addDays(30));
     }
 }
