@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rayon;
+use App\Models\Employe;
 use App\Http\Requests\StoreRayonRequest;
 use App\Http\Requests\UpdateRayonRequest;
 
@@ -26,11 +27,9 @@ class RayonController extends Controller
      */
     public function create()
     {
-        $rayons = rayon::all();
-        return redirect()->route('rayons.index')->with([
-            'status' => 'success',
-            'msg' => __('Rayon créé avec succès')
-        ]);
+        $rayons = Rayon::all();
+        $employes = Employe::all();
+        return view('rayons.create', compact('rayons'));
     }
 
     /**
@@ -64,7 +63,8 @@ class RayonController extends Controller
      */
     public function edit(Rayon $rayon)
     {
-        return view('rayons.edit', compact('rayon'));
+        $employes = Employe::all();
+        return view('rayons.edit', compact('rayon', 'employes'));
     }
 
     /**
@@ -78,8 +78,10 @@ class RayonController extends Controller
     {
         $rayon->update($request->except([
             '_token',
-            '_method'
+            '_method',
+            'employe_id'
         ]));
+        $rayon->employes()->attach($request->employe_id);
         $rayon->save();
         return redirect()->route('rayons.index')->with([
             'status' => 'success',

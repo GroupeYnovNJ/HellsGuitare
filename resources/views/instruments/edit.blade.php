@@ -22,47 +22,51 @@
             <input type="hidden" id="id" name="id" value="{{ $instrument->id }}"><br>
             <label for="nom">Nom</label>
             <input type="text" id="nom" name="nom" value="{{ $instrument->nom }}"><br>
-            <textarea id="desc" name="description">{{ $instrument->description }}</textarea><br>
+            <label for="description">Description</label>
+            <textarea id="description" name="description">{{ $instrument->description }}</textarea><br>
             <label for="prix">Prix</label>
             <input type="number" step="0.01" id="prix" name="prix" value="{{ $instrument->prix }}"><br>
             <label for="stock">Stock</label>
             <input type="number" id="stock" name="stock" value="{{ $instrument->stock }}"><br>
             <label for="image">Image</label>
-            <input type="file" name="image" value="{{ $instrument->image }}"><br>
-            <label for="categorie">Catégorie</label>
-            <select name="categorie_id" id="categorie">
+            <input type="file" name="image"><br>
+            <label for="categorie_id">Catégorie</label>
+            <select name="categorie_id" id="categorie_id">
                 @foreach ($categories as $categorie)
-                    @if ($categorie->id == $instrument->categories_id)
+                    @if ($categorie->id == $instrument->categorie_id)
                         <option selected value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
                     @else
                         <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
                     @endif
                 @endforeach
             </select><br>
-            <select name="rayon_id" id="rayon">
+            <label for="rayon">Rayon</label>
+            <select name="rayon_id" id="rayon_id">
                 @foreach ($rayons as $rayon)
-                    @if ($rayon->id == $instrument->rayons_id)
+                    @if ($rayon->id == $instrument->rayon_id)
                         <option selected value="{{ $rayon->id }}">{{ $rayon->nom }}</option>
                     @else
                         <option value="{{ $rayon->id }}">{{ $rayon->nom }}</option>
                     @endif
                 @endforeach
             </select><br>
-            <select name="marque_id" id="marque">
+            <label for="marque_id">Marque</label>
+            <select name="marque_id" id="marque_id">
                 @foreach ($marques as $marque)
-                    @if ($marque->id == $instrument->marques_id)
+                    @if ($marque->id == $instrument->marque_id)
                         <option selected value="{{ $marque->id }}">{{ $marque->nom }}</option>
                     @else
                         <option value="{{ $marque->id }}">{{ $marque->nom }}</option>
                     @endif
                 @endforeach
             </select><br>
-            <select name="promotion_id" id="promotion">
+            <label for="promotion_id">Promotion</label>
+            <select name="promotion_id" id="promotion_id">
                 @foreach ($promotions as $promotion)
-                    @if ($promotion->id == $instrument->promotions_id)
-                        <option selected value="{{ $promotion->id }}">{{ $promotion->coupon }}</option>
+                    @if ($promotion->id == $instrument->promotion_id)
+                        <option selected value="{{ $promotion->id }}">{{ $promotion->reduction }}</option>
                     @else
-                        <option value="{{ $promotion->id }}">{{ $promotion->coupon }}</option>
+                        <option value="{{ $promotion->id }}">{{ $promotion->reduction }}</option>
                     @endif
                 @endforeach
             </select><br>

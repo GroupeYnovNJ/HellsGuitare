@@ -24,26 +24,26 @@
         <input type="number" id="stock" name="stock"><br>
         <label for="image">Image</label>
         <input type="file" name="image"><br>
-        <label for="categorie">Catégorie</label>
-        <select name="categorie_id" for="categorie">
+        <label for="categorie_id">Catégorie</label>
+        <select name="categorie_id" for="categorie_id">
             @foreach ($categories as $categorie)
                 <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
             @endforeach
         </select><br>
-        <label for="rayon">Rayon</label>
-        <select name="rayon_id" for="rayon">
+        <label for="rayon_id">Rayon</label>
+        <select name="rayon_id" for="rayon_id">
             @foreach ($rayons as $rayon)
                 <option value="{{ $rayon->id }}">{{ $rayon->nom }}</option>
             @endforeach
         </select><br>
-        <label for="rayon">Marque</label>
-        <select name="marque_id" for="marque">
+        <label for="marque_id">Marque</label>
+        <select name="marque_id" for="marque_id">
             @foreach ($marques as $marque)
                 <option value="{{ $marque->id }}">{{ $marque->nom }}</option>
             @endforeach
         </select><br>
-        <label for="rayon">Promotion</label>
-        <select name="promotion_id" for="promotion">
+        <label for="promotion_id">Promotion</label>
+        <select name="promotion_id" for="promotion_id">
             @foreach ($promotions as $promotion)
                 <option value="{{ $promotion->id }}">{{ $promotion->reduction }}</option>
             @endforeach

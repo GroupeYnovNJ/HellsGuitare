@@ -10,8 +10,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">{{ __('Nom') }}</th>
-                <th scope="col">{{ __('Prénom') }}</th>
+                <th scope="col">{{ __('Nom Complet') }}</th>
                 <th scope="col">{{ __('Téléphone') }}</th>
                 <th scope="col">{{ __('Email') }}</th>
 
@@ -22,14 +21,16 @@
             @foreach ($employes as $employe)
                 <tr>
                     <th scope="row">{{ $employe->id }}</th>
-                    <a href="{{ route('employe.show', $employe->id) }}">
-                        <td>
 
+                    <td>
+                        <a href="{{ route('employe.show', $employe->id) }}">
                             {{ $employe->nom }}
 
-                        </td>
-                        <td>{{ $employe->prenom }}</td>
-                    </a>
+
+                            {{ $employe->prenom }}
+                        </a>
+                    </td>
+
                     <td>{{ $employe->telephone }}</td>
                     <td>{{ $employe->email }}</td>
                     <td>

@@ -20,7 +20,7 @@ class InstrumentController extends Controller
      */
     public function index()
     {
-        $instruments = Instrument::paginate(2);
+        $instruments = Instrument::paginate(5);
         return view('instruments.index', compact('instruments'));
     }
 
@@ -65,10 +65,7 @@ class InstrumentController extends Controller
                 'marque_id' => $request->marque_id,
                 'promotion_id' => $request->promotion_id,
             ]);
-            $request->instrument = $real;
-
         }
-        
         
         return redirect()->route('instruments.index')->with([
             'status' => 'success',
@@ -115,6 +112,10 @@ class InstrumentController extends Controller
             '_token',
             '_method',
             'image',
+            'categorie_id',
+            'rayon_id',
+            'marque_id',
+            'promotion_id',
         ]));
         if($request->hasFile('image'))
         {
@@ -127,6 +128,10 @@ class InstrumentController extends Controller
                 $instrument->image = $real;
             }
         }
+        $instrument->categorie()->associate($request->categorie_id);
+        $instrument->rayon()->associate($request->rayon_id);
+        $instrument->marque()->associate($request->marque_id);
+        $instrument->promotion()->associate($request->promotion_id);
         $instrument->save();
         return redirect()->route('instruments.index')->with([
             'status' => 'success',

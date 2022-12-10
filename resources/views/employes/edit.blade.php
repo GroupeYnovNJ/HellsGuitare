@@ -22,18 +22,16 @@
             <input type="hidden" id="id" name="id" value="{{ $employe->id }}"><br>
             <label for="nom">Nom</label>
             <input type="text" id="nom" name="nom" value="{{ $employe->nom }}"><br>
+            <label for="nom">Prénom</label>
             <input type="text" id="prenom" name="prenom" value="{{ $employe->prenom }}"><br>
             <label for="telephone">Téléphone</label>
             <input type="tel" id="telephone" name="telephone" value="{{ $employe->telephone }}"><br>
             <label for="email">Email</label>
             <input type="email" id="email" name="email" value="{{ $employe->email }}"><br>
-            <select name="rayon_id" class="@error('rayon_id') is-invalid @enderror">
+            <label for="rayon">Rayons</label>
+            <select name="rayon_id" class="@error('rayon_id') is-invalid @enderror" id="rayon">
                 @foreach ($rayons as $rayon)
-                    @if ($rayon->id == $instrument->rayons_id)
-                        <option selected value="{{ $rayon->id }}">{{ $rayon->nom }}</option>
-                    @else
-                        <option value="{{ $rayon->id }}">{{ $rayon->nom }}</option>
-                    @endif
+                    <option value="{{ $rayon->id }}">{{ $rayon->nom }}</option>
                 @endforeach
             </select>
             @error('rayon_id')

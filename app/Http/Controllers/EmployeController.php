@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rayon;
 use App\Models\Employe;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreEmployeRequest;
@@ -27,7 +28,9 @@ class EmployeController extends Controller
      */
     public function create()
     {
-        return view('employes.create', compact('employes'));
+        $employes = Employe::all();
+        $rayons = Rayon::all();
+        return view('employes.create', compact('employes', 'rayons'));
     }
 
     /**
@@ -70,7 +73,8 @@ class EmployeController extends Controller
      */
     public function edit(Employe $employe)
     {
-        return view('employes.edit', compact('employe'));
+        $rayons = Rayon::all();
+        return view('employes.edit', compact('employe', 'rayons'));
     }
 
     /**
@@ -84,8 +88,10 @@ class EmployeController extends Controller
     {
         $employe->update($request->except([
             '_token',
-            '_method'
+            '_method',
+            'rayon_id'
         ]));
+        $employe->rayons()->attach($request->rayon_id);
         $employe->save();
         return redirect()->route('employes.index')->with([
             'status' => 'success',

@@ -24,13 +24,10 @@
             <input type="text" id="nom" name="nom" value="{{ $rayon->nom }}"><br>
             <label for="nb_produits">Nombre de produits</label>
             <input type="number" id="nb_produits" name="nb_produits" value="{{ $rayon->nb_produits }}"><br>
-            <select name="employe_id" class="@error('employe_id') is-invalid @enderror">
+            <label for="employe_id">Employés</label>
+            <select name="employe_id" class="@error('employe_id') is-invalid @enderror" id="employe_id">
                 @foreach ($employes as $employe)
-                    @if ($employe->id == $instrument->employes_id)
-                        <option selected value="{{ $employe->id }}">{{ $employe->nom }}</option>
-                    @else
-                        <option value="{{ $employe->id }}">{{ $employe->nom }}</option>
-                    @endif
+                    <option value="{{ $employe->id }}">{{ $employe->nom }}</option>
                 @endforeach
             </select>
             @error('employe_id')

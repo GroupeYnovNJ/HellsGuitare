@@ -25,9 +25,11 @@ class Instrument extends Model
     public function categorie(){
         return $this->belongsTo(Categorie::class);
     }
+    
     public function marque(){
         return $this->belongsTo(Marque::class);
     }
+
     public function rayon(){
         return $this->belongsTo(Rayon::class);
     }
